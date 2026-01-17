@@ -5,7 +5,7 @@
 #include <string.h>
 #include <windows.h> // for sleep()
 
-// Clear previous output
+// () for clear previous output
 static void clear_screen(void)
 {
 #ifdef _WIN32
