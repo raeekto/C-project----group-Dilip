@@ -9,7 +9,7 @@
 #include <windows.h>
 
 // Functions declaration
-static void r1ender_board(void);           // to render
+static void render_board(void);           // to render
 static bool check_winner(char person);     // to check winner
 static bool is_draw(void);                 // to check draw
 bool make_move(int position, char person); // to moves
