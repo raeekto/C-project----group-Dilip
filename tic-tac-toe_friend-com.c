@@ -48,13 +48,13 @@ void loadingStyle(int miliSec, char heading[])
     for (int i = 0; i < strlen(heading); i++)
     {
         printf("%c", heading[i]);
-        Beep(1000, 700);
+        Beep(1000, 200);
         Sleep(miliSec);
     }
     for (int i = 0; i < 7; i++)
     {
         printf(".");
-        Beep(1000, 500);
+        Beep(1000, 100);
         Sleep(miliSec);
     }
     printf("\n\n");
@@ -70,7 +70,7 @@ int main()
     do
     {
         printf("\n\t\tWELCOME\n\t\tLoading.");
-        loadingStyle(30, "Enjoy With Tic-Tac-Toe");
+        loadingStyle(10, "Enjoy With Tic-Tac-Toe");
         printf("\n\n");
         printf("\nChoose mode:\n1. Play with Friend\n2. Play with Computer\nEnter choice: ");
         scanf("%d", &mode);
@@ -96,11 +96,11 @@ int main()
 
         if (!userChoice)
         {
-            loadingStyle(100, "Ending game");
+            loadingStyle(20, "Ending game");
         }
         else
         {
-            loadingStyle(100, "Starting new game");
+            loadingStyle(20, "Starting new game");
         }
 
     } while (userChoice);
@@ -125,11 +125,11 @@ static void render_board(void)
                 if (i % 2 != 0)
                 {
                     int cellIndex = (i / 2) * 3 + j;
-                    char symbol = board.cells[cellIndex] == ' ' ? '1' + cellIndex : board.cells[cellIndex];
+                    char positionVal = board.cells[cellIndex] == ' ' ? '1' + cellIndex : board.cells[cellIndex];
                     if (j == 0)
-                        (j == 2) ? printf("\t|  %c  |", symbol) : printf("\t|  %c  ", symbol);
+                        (j == 2) ? printf("\t|  %c  |", positionVal) : printf("\t|  %c  ", positionVal);
                     else
-                        (j == 2) ? printf("|  %c  |", symbol) : printf("|  %c  ", symbol);
+                        (j == 2) ? printf("|  %c  |", positionVal) : printf("|  %c  ", positionVal);
                 }
             }
         }
@@ -197,12 +197,12 @@ bool make_move(int position, char person)
     if (check_winner(person))
     {
         printf("\n\t Player %c!  ", person);
-        loadingStyle(100, "Wins this game");
+        loadingStyle(10, "Wins this game");
         return true;
     }
     if (is_draw())
     {
-        loadingStyle(100, "Game is draw");
+        loadingStyle(10, "Game is draw");
         return true;
     }
     return false;
@@ -229,7 +229,7 @@ void play_friend(void)
             {
                 printf("\nTurn of Player 1 (X)\nChoose position (1-9): ");
                 scanf("%d", &position);
-                Beep(1000, 100);
+                Beep(1000, 20);
             } while (!make_move(position, player1) && board.cells[position - 1] != player1);
             gameOver = check_winner(player1) || is_draw();
             turnX = false;
@@ -240,7 +240,7 @@ void play_friend(void)
             {
                 printf("\nTurn of Player 2 (O)\nChoose position (1-9): ");
                 scanf("%d", &position);
-                Beep(1000, 100);
+                Beep(1000, 20);
             } while (!make_move(position, player2) && board.cells[position - 1] != player2);
             gameOver = check_winner(player2) || is_draw();
             turnX = true;
@@ -280,7 +280,7 @@ void play_computer(void)
             {
                 printf("\nYour turn (X)\nChoose position (1-9): ");
                 scanf("%d", &position);
-                Beep(1000, 100);
+                Beep(1000, 20);
             } while (!make_move(position, player) && board.cells[position - 1] != player);
             gameOver = check_winner(player) || is_draw();
             playerTurn = false;
@@ -288,7 +288,7 @@ void play_computer(void)
         else
         {
             printf("\nComputer's turn (O)...\n");
-            Sleep(1500);
+            Sleep(1000);
             do
             {
                 position = computer_move();
